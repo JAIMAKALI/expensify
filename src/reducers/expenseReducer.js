@@ -9,13 +9,18 @@ export default (state=[],action)=>{
         })
         case "EDIT_EXPENSE":
         return state.map((expense)=>{
-        if(expense.id===action.id){
-           return {...expense,description:action.description,ammount:action.ammount,createdAt:action.createdAt}
+        if(expense.id===action.expense.id){
+         // console.log('sattt',expense)
+           return{...expense,description:action.expense.description,
+            ammount:action.expense.ammount,createdAt:action.expense.createdAt};
         }
           else{
             return expense;
           }
         })
+       case "FETCH_EXPENSE":
+      //  console.log("this ism",action)
+       return action.expense
         default:
         return state;
     }

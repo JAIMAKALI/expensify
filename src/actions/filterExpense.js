@@ -16,12 +16,12 @@
     endDate
   })
   
-export  var sortByDate=({sortBy='ammount'}={})=>({
+export  var sortByDate=({sortBy=''}={})=>({
     type:'SORT_BY_DATE',
     sortBy
   })
   
- export var sortByAmmount=({sortBy='ammount'}={})=>({
+ export var sortByAmmount=({sortBy=''}={})=>({
     type:'SORT_BY_AMMOUNT',
     sortBy
   })

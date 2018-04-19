@@ -1,7 +1,7 @@
 import React from "react";
 // import EditExpense from "./editExpenseForm";
 import {connect} from 'react-redux';
-import {editExpense} from './../actions/expenses';
+import {startEditExpense} from './../actions/expenses';
 import CreateAddExpense from './create.addExpense';
 var Edit=(props)=>{
     return(
@@ -12,14 +12,16 @@ var Edit=(props)=>{
          expense={props.expense}
          id={props.match.params.id}
         onSubmit={(expenseEdit)=>{
-          props.dispatch(editExpense(expenseEdit));
+            // console.log('hjjjssj',expenseEdit)
+          props.dispatch(startEditExpense(expenseEdit));
+          props.history.push('/dashboard')
        }}/>
      </div> 
     )    
 }  
 
 var EditComponent=connect((state,props)=>({
-    expense:state.expensify.find((expense)=>{
+    expense:state.expensify.find((expense)=>{  
         return props.match.params.id===expense.id;
     })
 }))(Edit);

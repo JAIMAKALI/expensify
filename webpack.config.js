@@ -33,6 +33,7 @@ return {
                 use: ['css-loader', 'sass-loader']
               })
           }
+        
        ]
     },
    plugins:[CSSExtract]

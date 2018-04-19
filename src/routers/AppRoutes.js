@@ -1,10 +1,14 @@
 import React from "react";
-import {BrowserRouter, Route,Switch,Link} from 'react-router-dom';
+import {Router, Route,Switch,Link} from 'react-router-dom';
 import Dashboard from './../components/homePage';
 import Edit from "./../components/editExpense";
 import Create from './../components/createExpense';
-import Header from './../components/header';     
-    
+import HomepageLayout from './../components/help';    
+import LoginPage from './../components/loginPage';
+import createHistory from 'history/createBrowserHistory';
+import PrivateRoute from './privateRouter';
+export const history = createHistory();
+
       var NotExit=()=>(
            <div>
         <p>404! Not found</p>
@@ -12,21 +16,22 @@ import Header from './../components/header';
     </div>
      )
       
-var Router=()=>(
-<BrowserRouter>
+var RouterPage=()=>(
+<Router history={history}>
         <div>
-            <Header />
+           
         <Switch>
-            <Route path="/" component={Dashboard} exact={true} />
-            <Route path="/create" component={Create} />
+            <Route path="/" component={LoginPage} exact={true} />
+            <PrivateRoute path='/dashboard' component={Dashboard} />
+            <PrivateRoute path="/create" component={Create} />
             <Route path="/edit" component={Edit} exact/>
-            <Route path="/edit/:id" component={Edit} />
+            <PrivateRoute path="/edit/:id" component={Edit} />
+            <Route path="/help" component={HomepageLayout} />
             <Route component={NotExit} />
         </Switch>
         </div>
-        
-        </BrowserRouter>
+        </Router>
 );
 
-   export default Router;
+   export default RouterPage;
     
