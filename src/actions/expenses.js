@@ -12,9 +12,9 @@ export var startAddExpense=(expenseData={})=>{
   return (dispatch,getState)=>{
     var id=getState().auth;
          const {
-      description='',ammount=0,createdAt=0
+      description='',ammount=0,createdAt=0,avatarURL=''
      }=expenseData;
-   const expense={description,ammount,createdAt};
+   const expense={description,ammount,createdAt,avatarURL};
    database.ref(`users/${id}/expensify`).push(expense).then((ref)=>{
     dispatch(addExpense({id:ref.key,...expense}))
    })

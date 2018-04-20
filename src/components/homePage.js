@@ -6,7 +6,8 @@ import FilterInput from './filterInput';
 
 var Dashboard=()=>(
     <div>
-        <FilterInput />
+     
+        <FilterInput /> 
         <ExpenseList />
         <p>this is me</p>
      </div>

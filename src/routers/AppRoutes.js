@@ -7,6 +7,7 @@ import HomepageLayout from './../components/help';
 import LoginPage from './../components/loginPage';
 import createHistory from 'history/createBrowserHistory';
 import PrivateRoute from './privateRouter';
+import ProfilePage from "../components/testUpload";
 export const history = createHistory();
 
       var NotExit=()=>(
@@ -27,6 +28,7 @@ var RouterPage=()=>(
             <Route path="/edit" component={Edit} exact/>
             <PrivateRoute path="/edit/:id" component={Edit} />
             <Route path="/help" component={HomepageLayout} />
+            <Route path='/profile' component={ProfilePage} />
             <Route component={NotExit} />
         </Switch>
         </div>

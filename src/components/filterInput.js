@@ -2,25 +2,44 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {textFilter, sortByAmmount} from './../actions/filterExpense';
 import {sortByDate} from './../actions/filterExpense';
-var FilterInput=(props)=>(
+import {Input,Icon,Select,Rail,Sticky,Header} from 'semantic-ui-react';
+
+var FilterInput=(props)=>{
+    const options = [
+        { key: 'm', text: 'Date', value: 'date' },
+        { key: 'f', text: 'ammount', value: 'ammount' },
+      ]
+
+    return(     
     <div>
-        <input type='text'  onChange={(e)=>{
-          props.dispatch(textFilter({text:e.target.value}));
-        }}/>
-    <select onChange={(e)=>{
-    if(e.target.value==='ammount'){
-      props.dispatch(sortByAmmount({sortBy:e.target.value}));
-    }
-   else if(e.target.value==='date'){
-        props.dispatch(sortByDate({sortBy:e.target.value}));
-      }
-    }}>
-        <option value="date">Date</option>
-        <option value="ammount">Ammount</option>
-    </select>
+     
+        <Sticky >
+          <Header as='h3'>Stuck Content</Header>
+          <Input
+     type="text"   
+    icon={<Icon name='search' inverted circular link />}
+    placeholder='Search...'
+    onChange={(e)=>{
+        props.dispatch(textFilter({text:e.target.value}));
+      }}
+  />
+<br />
+    <Select placeholder='Select your country' options={options}
+     onChange={(e,data)=>{
+        if(data.value==='ammount'){
+          props.dispatch(sortByAmmount({sortBy:data.value}));
+        }
+       else if(data.value==='date'){
+            props.dispatch(sortByDate({sortBy:data.value}));
+          }
+        }}
+    />
+        </Sticky>
+       
+      
     </div>
 )
-
+}
 var ConnectFilterInput=connect((state)=>{
 return{
     FilterInput:state.filter

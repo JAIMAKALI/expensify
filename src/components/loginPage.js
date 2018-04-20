@@ -4,14 +4,17 @@ import {loginAuth} from './../actions/firebase';
 import {connect} from 'react-redux';
 var LoginPage=(props)=>{
 return(
-    <div>
-        <p>login page</p>
-        
-        <Button color='google plus' onClick={()=>{
+    <div className="login-layout">
+    <div className="login-layout__box">
+    <h1>Expensify</h1>
+    <p className="login-layout__content">You can mange your expense by this application</p>
+    <Button color='google plus' onClick={()=>{
             props.dispatch(loginAuth());
         }}>
       <Icon name='google plus' /> Google Plus
     </Button>
+    </div>
+       
     </div>
 )
 }

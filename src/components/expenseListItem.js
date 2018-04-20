@@ -2,14 +2,32 @@ import React from 'react';
 import {removeExpense} from './../actions/expenses';
 import {Link} from 'react-router-dom';
 import {startRemoveExpense} from './../actions/expenses';
+import {Card,Button} from 'semantic-ui-react';
+import moment from 'moment';
 var ExpenseListItem=(props)=>{
     return(
-        <div>
-        <h1>Description<Link to={`/edit/${props.id}`}>{props.description}</Link></h1>
-            <h4>Ammount<p>{props.ammount}</p></h4>
-            <h5>createdAt<p>{props.createdAt}</p></h5>
-            <button onClick={()=>{props.props.dispatch(startRemoveExpense({id:props.id}))}}>remove</button>
+<div className="ui centered card">
+              <Card>
+      <Card.Content>
+        <Card.Header>
+        <Link to={`/edit/${props.id}`}>expense {props.ammount}</Link>
+        </Card.Header>
+        <Card.Meta>
+        {moment(props.createdAt).format('LLLL')}
+        
+        </Card.Meta>
+        <Card.Description>
+        {props.description}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <div className='ui two buttons'>
+          <Button basic color='red' onClick={()=>{props.props.dispatch(startRemoveExpense({id:props.id}))}}>Remove</Button>
         </div>
+      </Card.Content>
+    </Card>  
+    </div>
+       
     )
 }
 
